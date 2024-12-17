@@ -13,7 +13,11 @@ settings = get_settings()
 def get_async_engine() -> AsyncEngine:
     return create_async_engine(
         f"postgresql+asyncpg://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_NAME}",
-        pool_size=2
+        pool_size=2,
+        pool_timeout=30,
+        pool_recycle=1800,
+        pool_pre_ping=True,
+        echo=True
     )
 
 
