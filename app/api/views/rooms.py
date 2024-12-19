@@ -9,4 +9,5 @@ router = APIRouter()
 async def get_rooms(
         controller: RoomsController = Depends()
 ):
+
     return await controller.get_rooms()
